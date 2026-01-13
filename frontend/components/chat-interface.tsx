@@ -8,6 +8,8 @@ import { Textarea } from "@/components/ui/textarea"
 import { Menu, Send, Plus, MessageSquare, Sparkles } from "lucide-react"
 import { cn } from "@/lib/utils"
 import ChatMessage from "@/components/chat-message"
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
 import TypingIndicator from "@/components/typing-indicator"
 import { sendChatMessage } from "@/lib/api"
 
@@ -96,7 +98,7 @@ export default function ChatInterface() {
         // Handle the three options
         if (userInput === "Start Research" || userInput === "start") {
           // Execute the research
-          const response = await fetch("http://localhost:8000/api/research/execute", {
+          const response = await fetch(`${API_BASE_URL}/api/research/execute`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -136,7 +138,7 @@ export default function ChatInterface() {
           
         } else {
           // Modify the plan with user feedback
-          const response = await fetch("http://localhost:8000/api/research/refine", {
+          const response = await fetch(`${API_BASE_URL}/api/research/refine`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -218,7 +220,7 @@ export default function ChatInterface() {
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: "assistant",
-        content: "Unable to connect to the research backend. Please ensure the API server is running at http://localhost:8000\n\nTo start the backend:\n```bash\npython api_server.py\n```",
+        content: `Unable to connect to the research backend at ${API_BASE_URL}\n\nError: ${error instanceof Error ? error.message : 'Connection failed'}\n\nPlease check:\n1. Backend is running\n2. NEXT_PUBLIC_API_URL is set correctly\n3. CORS is enabled on backend`,
         timestamp: new Date(),
       }
       setMessages((prev) => [...prev, errorMessage])
