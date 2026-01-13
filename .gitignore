@@ -7,6 +7,18 @@ __pycache__/
 venv/
 env/
 ENV/
+*.egg-info/
+dist/
+build/
+
+# Node.js / Frontend
+node_modules/
+.next/
+.turbo/
+out/
+*.tsbuildinfo
+.npm/
+.yarn/
 
 # Research System
 checkpoints/
@@ -14,6 +26,8 @@ reports/
 *.md
 !README.md
 !resume_requirement.md
+!API_WORKFLOW.md
+!DEPLOYMENT.md
 
 # Config (contains API keys)
 config/config.yaml
@@ -24,3 +38,7 @@ config/config.yaml
 .idea/
 *.swp
 *.swo
+
+# OS
+.DS_Store
+Thumbs.db
