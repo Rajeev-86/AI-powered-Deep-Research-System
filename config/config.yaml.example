@@ -1,0 +1,32 @@
+api_keys:
+  # GitHub Personal Access Token for GPT-5/GPT-4o via GitHub Models
+  # Get from: https://github.com/settings/tokens
+  GITHUB_TOKEN: "ghp_your_github_token_here"
+  
+  # Google AI Studio API Keys (Gemini models)
+  # Get from: https://aistudio.google.com/app/apikey
+  # Recommendation: Create 25 free tier keys for best reliability
+  android_studio:
+    keys: 
+      - "AIzaSyXXXXXXXXXXXXXXXXXXXXXX"  # Key 1
+      - "AIzaSyYYYYYYYYYYYYYYYYYYYYYY"  # Key 2
+      - "AIzaSyZZZZZZZZZZZZZZZZZZZZZZ"  # Key 3
+      # Add multiple keys for automatic rotation
+  
+  # Google Custom Search API
+  # Get API key from: https://console.cloud.google.com/apis/credentials
+  # Get Search Engine ID from: https://programmablesearchengine.google.com/
+  google_search:
+    keys: 
+      - "YOUR_GOOGLE_API_KEY_1"
+      - "YOUR_GOOGLE_API_KEY_2"
+      - --
+    Engine_id: 
+      - "YOUR_CX_ID_1"
+      - "YOUR_CX_ID_2"
+      - --
+  
+  # Tavily Search API (fallback search provider)
+  # Get from: https://tavily.com
+  tavily:
+    api_key: "tvly-XXXXXXXXXXXXXXXX"

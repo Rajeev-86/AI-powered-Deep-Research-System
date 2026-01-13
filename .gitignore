@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+
+# Research System
+checkpoints/
+reports/
+*.md
+!README.md
+!resume_requirement.md
+
+# Config (contains API keys)
+config/config.yaml
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
