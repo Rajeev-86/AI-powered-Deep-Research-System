@@ -138,6 +138,7 @@ class SearchEngine:
         
         try:
             print(f"Using Tavily Search for: {query}")
+            print(f"Tavily client initialized: {self.tavily_client is not None}")
             response = self.tavily_client.search(
                 query, 
                 search_depth="basic", 
@@ -156,7 +157,9 @@ class SearchEngine:
             return results
         
         except Exception as e:
-            print(f"Tavily Search error: {e}")
+            print(f"Tavily Search error: {type(e).__name__}: {e}")
+            import traceback
+            traceback.print_exc()
             return []
     
     def _switch_google_key(self):

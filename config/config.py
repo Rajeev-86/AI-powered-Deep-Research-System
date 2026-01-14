@@ -57,6 +57,15 @@ CX_ID_1 = config["api_keys"]["google_search"]["Engine_id"][1] if len(config["api
 # Tavily Search API Key
 TAVILY_SEARCH_KEY = config["api_keys"]["tavily"]["api_key"]
 
+# Debug: Print config source in production
+if os.getenv("USE_ENV_CONFIG") == "true":
+    print("=" * 70)
+    print("USING ENVIRONMENT VARIABLES FOR CONFIGURATION")
+    print(f"Tavily API Key loaded: {'Yes' if TAVILY_SEARCH_KEY else 'No'}")
+    print(f"Tavily Key (first 10 chars): {TAVILY_SEARCH_KEY[:10] if TAVILY_SEARCH_KEY else 'EMPTY'}")
+    print(f"Gemini Keys loaded: {len(GEMINI_API_KEYS)}")
+    print("=" * 70)
+
 # System Configuration
 MAX_RETRIES = 3
 CHECKPOINT_DIR = "checkpoints"
