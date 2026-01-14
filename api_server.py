@@ -318,22 +318,40 @@ async def refine_research_plan(request: dict):
     Optional: Refine research plan based on user feedback
     """
     try:
+        logger.info(" Refining plan based on user feedback...")
         from modules.Planner import refine_plan
         
         original_plan = request.get("plan")
         feedback = request.get("feedback")
+        query = request.get("query")
         
         if not original_plan or not feedback:
             raise HTTPException(status_code=400, detail="Missing plan or feedback")
         
         refined_plan = refine_plan(original_plan, feedback)
         
+        logger.info(f" Plan refined with {len(refined_plan.get('steps', []))} steps")
+        
+        # Format plan as markdown for display
+        plan_text = f"##  Revised Research Plan\n\n**Objective:** {refined_plan['main_objective']}\n\n"
+        plan_text += "### Steps:\n\n"
+        
+        for step in refined_plan['steps']:
+            plan_text += f"{step['step_number']}. {step['action']}\n"
+        
+        plan_text += "\n---\n\n"
+        plan_text += " Click **Start Research** to begin\n"
+        plan_text += " Click **Modify Plan** to refine further\n"
+        plan_text += " Click **Cancel** to abort\n"
+        
         return {
+            "response": plan_text,
             "plan": refined_plan,
             "timestamp": datetime.now().isoformat()
         }
     
     except Exception as e:
+        logger.error(f" Error refining plan: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
 

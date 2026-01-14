@@ -96,7 +96,7 @@ export default function ChatInterface() {
 
       try {
         // Handle the three options
-        if (userInput === "Start Research" || userInput === "start") {
+        if (userInput === "start research" || userInput === "start") {
           // Execute the research
           const response = await fetch(`${API_BASE_URL}/api/research/execute`, {
             method: "POST",
