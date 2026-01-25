@@ -275,6 +275,18 @@ Visit http://localhost:8000/docs for interactive Swagger documentation.
 # Frontend: http://localhost:3000
 ```
 
+### Deployment (Render)
+
+The project is deployed on Render. Use the links below to access the hosted services:
+
+- **Frontend (Next.js):** https://ai-powered-deep-research-system-frontend.onrender.com
+- **Backend (FastAPI):** https://ai-powered-deep-research-system-backend.onrender.com
+
+Notes:
+- Ensure the backend environment variables are set on Render (for example `USE_ENV_CONFIG=true`, `TAVILY_API_KEY`, `GEMINI_API_KEYS`, etc.).
+- The frontend uses the `NEXT_PUBLIC_API_URL` environment variable at build time — if you change it in the Render dashboard you must trigger a rebuild (clear build cache & deploy) so the frontend picks up the new URL.
+- CORS is enabled on the backend to allow requests from the deployed frontend.
+
 ---
 
 ## API Reference
